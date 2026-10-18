@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Zee A</title><link rel="icon" href="logo.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#050505;--card:#121110;--gold:#d4af37;--gold2:#f3dc8c;--tx:#f5efe0;--mute:#8d8470;--line:#2b2417}
+*{box-sizing:border-box;margin:0}body{background:var(--bg);color:var(--tx);font:15px/1.45 system-ui,sans-serif;padding:62px 0 76px}
+h1,h3{font-family:'Cormorant Garamond',Georgia,serif;color:var(--gold2)}
+header{position:fixed;top:0;left:0;right:0;z-index:5;display:flex;gap:8px;align-items:center;padding:8px 10px;background:#000;border-bottom:1px solid var(--line)}
+header input{flex:1;min-width:0;background:var(--card);border:1px solid var(--line);color:var(--tx);border-radius:20px;padding:9px 14px}
+.logo{width:38px;height:38px;border-radius:10px;border:1px solid var(--gold)}
+button{font:inherit;color:var(--tx);background:none;border:0;cursor:pointer}header button{font-size:22px;color:var(--gold)}
+.plus{border:1.5px solid var(--gold)!important;border-radius:50%;width:36px;height:36px;line-height:1}
+main,.wrap{max-width:560px;margin:0 auto;padding:0 10px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px;margin:10px 0}
+.row{display:flex;align-items:center;gap:10px}.row small{margin-left:auto;color:var(--mute)}
+.av{width:40px;height:40px;border-radius:50%;object-fit:cover;background:var(--gold);color:#000;display:grid;place-items:center;font-weight:700;flex:none;border:1px solid var(--gold)}
+.fake{flex:1;background:#000;border:1px solid var(--line);border-radius:20px;padding:10px 14px;color:var(--mute)}
+.media,video{width:100%;border-radius:10px;margin-top:8px;max-height:70vh;object-fit:cover;background:#000}
+.acts{display:flex;justify-content:space-around;margin-top:8px;border-top:1px solid var(--line);padding-top:6px}.acts button{color:var(--mute);padding:6px}.acts .on{color:var(--gold)}
+nav{position:fixed;bottom:0;left:0;right:0;display:flex;justify-content:space-around;align-items:center;background:#000;border-top:1px solid var(--line);padding:8px 0 12px;z-index:5}
+nav button{color:var(--mute);font-size:12px}nav button b{display:block;font-size:20px;font-weight:400}
+nav .fab{width:54px;height:54px;border-radius:50%;background:linear-gradient(135deg,var(--gold2),var(--gold) 60%,#8a6d17);color:#000;font-size:30px;margin-top:-26px;box-shadow:0 0 18px #d4af3766}
+.gold{background:linear-gradient(135deg,var(--gold2),var(--gold));color:#000;border-radius:10px;padding:9px 16px;font-weight:600}
+.ghost{border:1px solid var(--gold);color:var(--gold);border-radius:10px;padding:8px 14px}
+.stories{display:flex;gap:12px;padding:12px 0;overflow-x:auto}.story{text-align:center;font-size:12px;color:var(--mute)}.ring{width:60px;height:60px;border-radius:50%;border:2px dashed var(--gold);display:grid;place-items:center;color:var(--gold);font-size:26px;margin-bottom:4px}
+.cover{height:150px;border-radius:14px;background:linear-gradient(135deg,#2a2210,#000) center/cover}
+.pdp{width:92px;height:92px;margin:-46px 0 0 14px;border:3px solid var(--bg);outline:1px solid var(--gold);font-size:34px}
+.stats{display:flex;justify-content:space-around;text-align:center;margin:12px 0}.stats b{display:block;font-size:18px;color:var(--gold2)}.stats span{color:var(--mute);font-size:12px}
+.links{display:flex;gap:12px;font-size:22px;margin:8px 0}.links a{text-decoration:none}
+.btns{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}.mute{color:var(--mute);padding:14px;text-align:center}
+.drawer{position:fixed;top:0;bottom:0;left:-290px;width:280px;background:#000;border-right:1px solid var(--gold);z-index:9;transition:left .2s;padding:16px;overflow:auto}.drawer.open{left:0}
+.drawer button{display:block;width:100%;text-align:left;padding:12px 4px;border-bottom:1px solid var(--line)}
+.md{position:fixed;inset:0;background:#000d;z-index:20;display:grid;place-items:center;padding:12px}.md>div{background:var(--card);border:1px solid var(--gold);border-radius:14px;padding:16px;width:100%;max-width:420px;max-height:90vh;overflow:auto}
+.md>div>*{display:block;width:100%;margin:8px 0}
+input,textarea,select{background:#000;border:1px solid var(--line);color:var(--tx);border-radius:8px;padding:9px;font:inherit;width:100%}
+.sw{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}.sw input{width:auto}
+.toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%);background:var(--gold);color:#000;padding:8px 16px;border-radius:20px;z-index:30}
+.auth{min-height:100vh;display:grid;place-items:center;padding:20px}.auth .logo{width:120px;height:120px;border-radius:26px;display:block;margin:0 auto 12px}.auth>div{width:100%;max-width:340px;text-align:center}.auth input{margin:6px 0}
+.reels{scroll-snap-type:y mandatory}.reels .card{scroll-snap-align:start}
+</style></head><body><div id="app"></div>
+<script>
+const $=s=>document.querySelector(s),esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+let me,tab='home';
+const api=async(p,m='GET',b)=>{const r=await fetch('/api'+p,{method:m,headers:{'Content-Type':'application/json',Authorization:'Bearer '+(localStorage.t||'')},body:b?JSON.stringify(b):undefined});const j=await r.json().catch(()=>({}));if(!r.ok)throw new Error(j.error||'Something went wrong');return j};
+const toast=t=>{const d=document.createElement('div');d.className='toast';d.textContent=t;document.body.append(d);setTimeout(()=>d.remove(),2200)};
+const ago=t=>{const m=(Date.now()-t)/6e4|0;return m<1?'now':m<60?m+'m':m<1440?(m/60|0)+'h':(m/1440|0)+'d'};
+const av=(u,c='')=>u.dp?`<img class="av ${c}" src="${u.dp}">`:`<div class="av ${c}">${esc(u.username[0]).toUpperCase()}</div>`;
+const rd=f=>new Promise(r=>{const x=new FileReader();x.onload=()=>r(x.result);x.readAsDataURL(f)});
+const shrink=async(f,m)=>{const i=new Image();i.src=await rd(f);await i.decode();const k=Math.min(1,m/Math.max(i.width,i.height)),c=document.createElement('canvas');c.width=i.width*k;c.height=i.height*k;c.getContext('2d').drawImage(i,0,0,c.width,c.height);return c.toDataURL('image/jpeg',.8)};
+const modal=h=>{closeM();const d=document.createElement('div');d.className='md';d.id='md';d.innerHTML='<div>'+h+'<button class="ghost" onclick="closeM()">Cancel</button></div>';document.body.append(d)},closeM=()=>$('#md')?.remove();
+const drawer=o=>$('#dr').classList.toggle('open',!!o);
+
+function authView(msg=''){$('#app').innerHTML=`<div class="auth"><div><img class="logo" src="logo.jpg"><h1>Zee A</h1><p class="mute">${esc(msg)}</p><input id="u" placeholder="Username" autocapitalize="none"><input id="p" type="password" placeholder="Password"><button class="gold" style="width:100%;margin-top:8px" onclick="auth('login')">Log in</button><button class="ghost" style="width:100%;margin-top:8px" onclick="auth('register')">Create account</button></div></div>`}
+async function auth(k){try{const r=await api('/'+k,'POST',{username:$('#u').value.trim(),password:$('#p').value});localStorage.t=r.token;boot()}catch(e){authView(e.message)}}
+const logout=()=>{localStorage.removeItem('t');authView()};
+
+async function boot(){if(!localStorage.t)return authView();try{me=await api('/me')}catch{return authView()}
+$('#app').innerHTML=`<header><button onclick="drawer(1)">☰</button><img class="logo" src="logo.jpg"><input id="q" placeholder="Search people" onkeydown="if(event.key=='Enter')go('search',this.value)"><button class="plus" onclick="newPost()">+</button></header>
+<main id="view"></main>
+<nav><button onclick="go('home')"><b>⌂</b>Home</button><button onclick="go('reels')"><b>▶</b>Reels</button><button class="fab" onclick="newPost()">+</button><button onclick="go('requests')"><b>👥</b>Requests</button><button onclick="go('profile')"><b>◉</b>Profile</button></nav>
+<aside class="drawer" id="dr"><h1>Zee A</h1>
+<button onclick="go('home')">Home</button><button onclick="go('requests')">Friend Requests (${me.requests} new)</button><button onclick="go('suggest')">Suggestions</button><button onclick="go('reels')">Reels</button><button onclick="go('profile')">My Profile + Dashboard</button><button onclick="go('people','followers')">Followers</button><button onclick="go('people','following')">Following</button><button onclick="toast('Live Chat and Live are coming soon')">Live Chat + Live</button><button onclick="go('settings')">App Settings</button><button onclick="logout()">Log out</button></aside>`;
+$('#view').addEventListener('click',()=>drawer(0));go('home')}
+
+async function go(v,a){tab=v;drawer(0);scrollTo(0,0);const el=$('#view');el.innerHTML='<p class="mute">Loading…</p>';try{el.innerHTML=await V[v](a)}catch(e){el.innerHTML=`<p class="mute">${esc(e.message)}</p>`}}
+const postHTML=p=>`<article class="card"><div class="row" onclick="go('profile',${p.uid})">${av(p)}<b>${esc(p.username)}</b><small>${ago(p.ts)}</small></div>${p.caption?`<p style="margin-top:8px">${esc(p.caption)}</p>`:''}${p.type=='reel'?`<video src="${p.media}" controls playsinline loop></video>`:p.media?`<img class="media" src="${p.media}">`:''}<div class="acts"><button class="${p.liked?'on':''}" onclick="like(${p.id},this)">${p.liked?'❤️ Liked':'🤍 Like'} <span>${p.likes}</span></button><button onclick="cmt(${p.id})">💬 ${p.comments}</button><button onclick="share(${p.id})">↗ Share</button><button class="${p.faved?'on':''}" onclick="fav(${p.id},this)">${p.faved?'★':'☆'} Favorite</button></div><div id="c${p.id}"></div></article>`;
+const personHTML=(u,btn='')=>`<div class="card row"><div class="row" style="flex:1" onclick="go('profile',${u.id})">${av(u)}<b>${esc(u.username)}</b></div>${btn}</div>`;
+const L={wa:['📱','https://wa.me/'],tt:['🎵','https://tiktok.com/@'],ig:['📸','https://instagram.com/'],fb:['📘','https://facebook.com/'],mail:['📧','mailto:']};
+const linksHTML=l=>Object.keys(L).filter(k=>l[k]).map(k=>`<a href="${L[k][1]+encodeURIComponent(l[k])}" target="_blank" rel="noopener">${L[k][0]}</a>`).join('');
+
+const V={
+async home(){const f=await api('/feed');return `<div class="stories"><div class="story" onclick="toast('Stories are coming soon')"><div class="ring">+</div>Create Story</div></div><div class="card row" onclick="newPost()">${av(me)}<div class="fake">What's on your mind, ${esc(me.username)}?</div></div>`+(f.map(postHTML).join('')||'<p class="mute">No posts yet. Share the first one.</p>')},
+async reels(){const f=await api('/feed?type=reel');return `<h3 style="padding:12px 0">Reels</h3><div class="reels">`+(f.map(postHTML).join('')||'<p class="mute">No reels yet. Tap + and add a video.</p>')+'</div>'},
+async profile(id=me.id){const u=await api('/users/'+id),mine=u.rel=='me';
+const fb=u.following?'Following':u.followsMe?'Follow Back':'Follow',fr={none:['Add Friend',`rel(${id},'add')`],sent:['Requested ✕',`rel(${id},'del')`],got:['Confirm',`rel(${id},'ok')`],friends:['Friends ✓',`rel(${id},'del')`]}[u.rel];
+return `<div class="cover" style="background-image:url(${u.cover||''})"></div>${av(u,'pdp')}<h1 style="margin:6px 14px 0">${esc(u.username)}</h1><p style="margin:4px 14px">${esc(u.bio)}</p><div class="links" style="margin:8px 14px">${linksHTML(u.links)}</div>
+<div class="stats"><div><b>${u.postsN}</b><span>Posts</span></div><div><b>${u.followers}</b><span>Followers</span></div><div><b>${u.followingN}</b><span>Following</span></div><div><b>${u.friendsN}</b><span>Friends</span></div></div>
+<div class="btns">${mine?`<button class="gold" onclick="editProfile()">Edit Profile</button><button class="ghost" onclick="newPost()">+ Photo / Reel</button><label class="sw" style="border:0;gap:8px">🔒 ID Lock <input type="checkbox" ${me.locked?'checked':''} onchange="setting('locked',this.checked)"></label>`:`<button class="gold" onclick="rel(${id},'follow')">${fb}</button><button class="ghost" onclick="${fr[1]}">${fr[0]}</button>`}</div>`+(u.locked&&!u.posts.length&&!mine&&u.rel!='friends'?'<p class="mute">🔒 This ID is locked. Become friends to see posts.</p>':u.posts.map(postHTML).join('')||'<p class="mute">No posts yet.</p>')},
+async search(q){const r=await api('/search?q='+encodeURIComponent(q||''));return `<h3 style="padding:12px 0">Results for "${esc(q)}"</h3>`+(r.map(u=>personHTML(u)).join('')||'<p class="mute">No one found.</p>')},
+async requests(){const r=await api('/requests');return `<h3 style="padding:12px 0">Friend Requests</h3>`+(r.map(u=>personHTML(u,`<button class="gold" onclick="rel(${u.id},'ok','requests')">Confirm</button><button class="ghost" onclick="rel(${u.id},'del','requests')">Delete</button>`)).join('')||'<p class="mute">No new requests.</p>')},
+async suggest(){const r=await api('/suggestions');return `<h3 style="padding:12px 0">Suggestions</h3>`+(r.map(u=>personHTML(u,`<button class="gold" onclick="rel(${u.id},'add','suggest')">Add Friend</button>`)).join('')||'<p class="mute">No suggestions right now.</p>')},
+async people(k){const r=await api('/people?kind='+k);return `<h3 style="padding:12px 0">${k=='followers'?'Followers':'Following'}</h3>`+(r.map(u=>personHTML(u)).join('')||'<p class="mute">Nobody here yet.</p>')},
+async settings(){me=await api('/me');return `<h3 style="padding:12px 0">App Settings</h3><div class="card"><div class="sw">Post privacy<select style="width:auto" onchange="setting('privacy',this.value)">${[['public','Public'],['friends','Friends'],['me','Only Me']].map(o=>`<option value="${o[0]}" ${me.privacy==o[0]?'selected':''}>${o[1]}</option>`).join('')}</select></div>
+<label class="sw">Active status<input type="checkbox" ${me.active?'checked':''} onchange="setting('active',this.checked)"></label><label class="sw">🔒 ID Lock<input type="checkbox" ${me.locked?'checked':''} onchange="setting('locked',this.checked)"></label>
+<div class="sw">Linked accounts<span class="links" style="margin:0">${linksHTML(me.links)||'<small class="mute">none</small>'}</span></div><div class="sw">Add account<button class="ghost" onclick="logout()">Switch</button></div></div>`}
+};
+
+async function setting(k,v){await api('/me','PUT',{[k]:v});me[k]=v;toast('Saved')}
+async function rel(id,a,back){try{if(a=='follow')await api('/follow/'+id,'POST');if(a=='add')await api('/friend/'+id,'POST');if(a=='ok')await api('/friend/'+id+'/confirm','POST');if(a=='del')await api('/friend/'+id,'DELETE')}catch(e){toast(e.message)}go(back||'profile',back?undefined:id)}
+async function like(id,b){const r=await api('/posts/'+id+'/like','POST');b.className=r.on?'on':'';b.innerHTML=(r.on?'❤️ Liked':'🤍 Like')+' <span>'+r.n+'</span>'}
+async function fav(id,b){const r=await api('/posts/'+id+'/fav','POST');b.className=r.on?'on':'';b.textContent=r.on?'★ Favorite':'☆ Favorite'}
+async function cmt(id){const d=$('#c'+id);if(d.innerHTML)return d.innerHTML='';const c=await api('/posts/'+id+'/comments');d.innerHTML=c.map(x=>`<p style="margin-top:6px"><b>${esc(x.username)}</b> ${esc(x.text)}</p>`).join('')+`<div class="row" style="margin-top:8px"><input id="ci${id}" placeholder="Write a comment"><button class="gold" onclick="sendC(${id})">Send</button></div>`}
+async function sendC(id){const t=$('#ci'+id).value;if(!t.trim())return;await api('/posts/'+id+'/comments','POST',{text:t});$('#c'+id).innerHTML='';cmt(id)}
+const share=id=>{const u=location.origin;navigator.share?navigator.share({title:'Zee A',url:u}):navigator.clipboard.writeText(u).then(()=>toast('Link copied'))};
+function newPost(){modal(`<h3>New post</h3><textarea id="cap" rows="3" placeholder="What's on your mind?"></textarea><input type="file" id="fl" accept="image/*,video/*"><select id="pv"><option value="public">Public</option><option value="friends">Friends</option><option value="me">Only Me</option></select><button class="gold" onclick="sendPost()">Post</button>`);$('#pv').value=me.privacy}
+async function sendPost(){try{const f=$('#fl').files[0],v=f&&f.type.startsWith('video');if(f&&f.size>40e6)return toast('File is too big. Max 40 MB.');const media=f?(v?await rd(f):await shrink(f,900)):null,caption=$('#cap').value;if(!caption&&!media)return toast('Write something or add a photo or reel');await api('/posts','POST',{caption,media,type:v?'reel':'photo',privacy:$('#pv').value});closeM();go(tab=='reels'?'reels':tab=='profile'?'profile':'home')}catch(e){toast(e.message)}}
+function editProfile(){const l=me.links;modal(`<h3>Edit Profile</h3><label>Profile photo<input type="file" id="edp" accept="image/*"></label><label>Cover photo<input type="file" id="eco" accept="image/*"></label><textarea id="ebio" rows="2" placeholder="Bio">${esc(me.bio)}</textarea>${Object.keys(L).map(k=>`<input id="l_${k}" placeholder="${L[k][0]} ${{wa:'WhatsApp number',tt:'TikTok username',ig:'Instagram username',fb:'Facebook username',mail:'Email'}[k]}" value="${esc(l[k]||'')}">`).join('')}<button class="gold" onclick="saveProfile()">Save changes</button>`)}
+async function saveProfile(){const links={};Object.keys(L).forEach(k=>{const v=$('#l_'+k).value.trim();if(v)links[k]=v});const b={bio:$('#ebio').value,links};const d=$('#edp').files[0],c=$('#eco').files[0];if(d)b.dp=await shrink(d,300);if(c)b.cover=await shrink(c,1000);await api('/me','PUT',b);me=await api('/me');closeM();go('profile')}
+boot();
+</script></body></html>
